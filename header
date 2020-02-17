@@ -1,0 +1,23 @@
+#pragma once
+#include <iostream>
+#include<istream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+struct critters
+{
+	char critterType = ' ';
+	int timeAlive = 0;
+	int timeSinceLastMeal = 0;
+};
+critters** theWorld(int worldSz);
+
+void breedAnt(critters** theWorld);
+void moveAnt(critters** theWorld);
+void moveDood(critters** theWorld);
+void starveDood(critters** theWorld);
+void fillTheWorldAnts(critters** theWorld, int worldSz);
+void filltheWorldDood(critters** theWorld, int worldSz);
+void printTheWorld(critters** theWorld, int worldSz);
+void playGame(int worldSize);

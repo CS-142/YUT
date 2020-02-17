@@ -1,0 +1,313 @@
+#include "predator_prey.h"
+
+
+//initalizing function for the game grid
+critters** theWorld(int worldSize)
+{
+	//getting world size from the user
+
+
+
+	critters** gameGrid = new critters * [worldSize];
+	for (int row = 0; row < worldSize; row++)
+	{
+		gameGrid[row] = new critters[worldSize];
+	}
+
+	for (int row = 0; row < worldSize; row++)
+	{
+		for (int column = 0; column < worldSize; column++)
+		{
+			(*(gameGrid + row) + column)->critterType = ' ';
+		} 
+
+	}
+
+
+	return gameGrid;
+}
+
+void moveAnt(critters** theWorld)
+{
+	srand(time(NULL));
+	int randNum = rand() % 4;
+	const int UP = 0;
+	const int DOWN = 1;
+	const int LEFT = 2;
+	const int RIGHT = 3;
+	//sitch to check to make sure that the tile is open before moving then ssetting previous position to 0
+	if ((*(theWorld))->critterType == 'A')
+	{
+		switch (randNum)
+		{
+		case UP: if ((*(theWorld + 1))->critterType == ' ')
+		{
+			(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			(*(theWorld))->timeAlive += 1;
+			break;
+
+		}
+		case DOWN: if ((*(theWorld - 1))->critterType == ' ')
+		{
+			(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			(*(theWorld))->timeAlive += 1;
+			break;
+		}
+		case LEFT: if ((*(theWorld)-1)->critterType == ' ')
+		{
+			(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			(*(theWorld))->timeAlive += 1;
+			break;
+		}
+		case RIGHT: if ((*(theWorld)+1)->critterType == ' ')
+
+		{
+			(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			(*(theWorld))->timeAlive += 1;
+			break;
+		}
+		}
+
+	}
+}
+
+void breedAnt(critters** theWorld)
+{
+	//if the ant has been alive for an increiment of 3 then it reproduces in an open adjacent tile
+	if ((*(theWorld))->critterType == 'A')
+	{
+		if ((*theWorld)->timeAlive % 3 == 0)
+		{
+			srand(time(NULL));
+			int randNum = rand() % 4;
+			const int UP = 0;
+			const int DOWN = 1;
+			const int LEFT = 2;
+			const int RIGHT = 3;
+
+			switch (randNum)
+			{
+			case UP: if ((*(theWorld + 1))->critterType == ' ')
+			{
+				(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case DOWN: if ((*(theWorld - 1))->critterType == ' ')
+			{
+				(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case LEFT: if ((*(theWorld)-1)->critterType == ' ')
+			{
+				(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case RIGHT: if ((*(theWorld)+1)->critterType == ' ')
+
+			{
+				(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			}
+
+		}
+
+	}
+}
+
+void moveDood(critters** theWorld)
+{
+
+
+	if ((*(theWorld))->critterType = 'D')
+	{
+		srand(time(NULL));
+		int randNum = rand() % 4;
+		const int UP = 0;
+		const int DOWN = 1;
+		const int LEFT = 2;
+		const int RIGHT = 3;
+		switch (randNum)
+		{
+		case UP: if ((*(theWorld + 1))->critterType == 'A')
+		{
+			(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			break;
+		}
+		case DOWN: if ((*(theWorld - 1))->critterType == 'A')
+		{
+			(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			break;
+		}
+		case LEFT: if ((*(theWorld)-1)->critterType == 'A')
+		{
+			(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			break;
+		}
+		case RIGHT: if ((*(theWorld)+1)->critterType == 'A')
+
+		{
+			(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
+			(*(theWorld))->critterType = ' ';
+			break;
+		}
+		default:
+		{
+			srand(time(NULL));
+			int randNum = rand() % 4;
+			const int UP = 0;
+			const int DOWN = 1;
+			const int LEFT = 2;
+			const int RIGHT = 3;
+
+			switch (randNum)
+			{
+			case UP: if ((*(theWorld + 1))->critterType == ' ')
+			{
+				(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case DOWN: if ((*(theWorld - 1))->critterType == ' ')
+			{
+				(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case LEFT: if ((*(theWorld)-1)->critterType == ' ')
+			{
+				(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			case RIGHT: if ((*(theWorld)+1)->critterType == ' ')
+
+			{
+				(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+				break;
+			}
+			}
+		}
+		}
+	}
+
+}
+
+void starveDood(critters** theWorld)
+{
+	if ((*(theWorld))->critterType == 'D' && (*(theWorld))->timeSinceLastMeal >= 3)
+	{
+		(*(theWorld))->critterType = ' ';
+	}
+
+
+}
+
+void fillTheWorldAnts(critters** theWorld, int worldSz)
+{
+	int nbAnts = 0;
+	// assuring that the array is currently pointing to the first values in
+	//the array so that the randNbs can be added without problems of overflowing outside of the array.
+	while (nbAnts < 95)
+	{
+		theWorld[0][0];
+		int	row = rand() % worldSz;
+		int	column = rand() % worldSz;
+		if ((*(theWorld))->critterType == ' ')
+		{
+			(*(theWorld))->critterType = 'A';
+			nbAnts++;
+		}
+	}
+
+}
+
+void filltheWorldDood(critters** theWorld, int worldSz)
+{
+	int nbDoods = 0;
+	// assuring that the array is currently pointing to the first values in
+	//the array so that the randNbs can be added without problems of overflowing outside of the array.
+	while (nbDoods < 5)
+	{
+		theWorld[0][0];
+		int	row = rand() % worldSz;
+		int	column = rand() % worldSz;
+		if ((*(theWorld))->critterType == ' ')
+		{
+			(*(theWorld))->critterType = 'D';
+			nbDoods++;
+		}
+	}
+
+}
+
+void printTheWorld(critters** theWorld, int worldSz)
+{
+	for (int row = 0; row < worldSz; row++)
+	{
+		for (int column = 0; column < worldSz; column++)
+		{
+			if ((*(theWorld))->critterType == ' ')
+			{
+				cout << '-';
+			}
+			else
+			{
+				cout << (*(theWorld))->critterType;
+			}
+		}
+		cout << endl;
+	}
+
+
+}
+
+//function to ask the user if they wish to keep going or not.
+bool keepPlaying()
+{
+	bool keepPlaying = true;
+	char userInput;
+	do
+	{
+		cout << "Do you wish to keep playing? Enter y for yes or n for no. " << endl;
+		cin >> userInput;
+	} while (userInput != 'y' && userInput != 'n');
+	if (userInput == 'n')
+	{
+		keepPlaying = false;
+	}
+	return keepPlaying;
+
+
+}
+
+//function to initalize and play the game
+void playGame(int worldSize)
+{
+	critters** gameGrid = theWorld(worldSize);
+	fillTheWorldAnts(gameGrid, worldSize);
+	filltheWorldDood(gameGrid, worldSize);
+	printTheWorld(gameGrid, worldSize);
+	bool userYesNo = keepPlaying();
+	while (userYesNo == true)
+	{
+		moveDood(gameGrid);
+		starveDood(gameGrid);
+		breedAnt(gameGrid);
+		moveAnt(gameGrid);
+		printTheWorld(gameGrid, worldSize);
+	}
+
+}

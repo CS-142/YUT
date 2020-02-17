@@ -122,8 +122,17 @@ void breedAnt(critters** theWorld)
 
 	}
 }
+int renameMe(critters** theWorld, int worldSize int location)
+{
+	int offWorld = 0;
+	if ((*(theWorld + location)) < 0 || (*(theWorld + location )) >= worldSize || (*(theWorld) + location) < 0 || (*(theWorld)+location)>= worldSize)
+	{
+		offWorld = 1;
+	}
+	return offWorld;
+}
 
-void moveDood(critters** theWorld)
+void moveDood(critters** theWorld, int worldSize)
 {
 
 
@@ -137,31 +146,52 @@ void moveDood(critters** theWorld)
 		const int RIGHT = 3;
 		switch (randNum)
 		{
-		case UP: if ((*(theWorld + 1))->critterType == 'A')
+		case UP: 
+		
+		if(renameMe(theWorld, worldSize, 1)==0)
 		{
-			(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
-			(*(theWorld))->critterType = ' ';
-			break;
+		
+			if ((*(theWorld + 1))->critterType == 'A')
+			{
+				(*(theWorld + 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+			
+			}
 		}
-		case DOWN: if ((*(theWorld - 1))->critterType == 'A')
+					break;
+		
+		case DOWN: 
+		
+		if(renameMe(theWorld, worldSize, -1)==0)
 		{
-			(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
-			(*(theWorld))->critterType = ' ';
-			break;
+			if ((*(theWorld - 1))->critterType == 'A')
+			{
+				(*(theWorld - 1))->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+			}
 		}
-		case LEFT: if ((*(theWorld)-1)->critterType == 'A')
+					break;
+		case LEFT: 
+		if(renameMe(theWorld, worldSize, -1)==0)
 		{
-			(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
-			(*(theWorld))->critterType = ' ';
-			break;
+			if ((*(theWorld)-1)->critterType == 'A')
+			{
+				(*(theWorld)-1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+			}
 		}
-		case RIGHT: if ((*(theWorld)+1)->critterType == 'A')
-
+					break;
+		
+		case RIGHT: 
+		if(renameMe(theWorld, worldSize, 1)==0)
 		{
-			(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
-			(*(theWorld))->critterType = ' ';
-			break;
+			if ((*(theWorld)+1)->critterType == 'A')
+			{
+				(*(theWorld)+1)->critterType = (*(theWorld))->critterType;
+				(*(theWorld))->critterType = ' ';
+			}
 		}
+					break:
 		default:
 		{
 			srand(time(NULL));
@@ -303,7 +333,7 @@ void playGame(int worldSize)
 	bool userYesNo = keepPlaying();
 	while (userYesNo == true)
 	{
-		moveDood(gameGrid);
+		moveDood(gameGrid, worldSize);
 		starveDood(gameGrid);
 		breedAnt(gameGrid);
 		moveAnt(gameGrid);

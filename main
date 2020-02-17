@@ -1,0 +1,14 @@
+#include "predator_prey.h"
+
+void main()
+{
+	int worldSize;
+	do
+	{
+		cout << "Please enter a number between 10-30 to define the parameters of the world. " << endl;
+		cin >> worldSize;
+	} while (worldSize < 10 || worldSize > 30);
+
+	playGame(worldSize);
+
+}
